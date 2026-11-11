@@ -1,10 +1,10 @@
-import { MapPin, ExternalLink, Sparkles, Phone } from "lucide-react";
+import { MapPin, ExternalLink, Sparkles, Phone, PartyPopper } from "lucide-react";
 import { event } from "../data/event";
 import Countdown from "./Countdown";
 
 const mapsUrl = event.venue.mapsUrl;
 
-export default function Details() {
+export default function Details({ onCelebrate }) {
   return (
     <section className="details-panel rise">
       <div className="details-ornament" aria-hidden="true">✦</div>
@@ -25,6 +25,9 @@ export default function Details() {
         <span className="contact-call">Call <span aria-hidden="true">↗</span></span>
       </a>
       <p className="details-note"><Sparkles size={14} /> Your presence will make our celebration complete</p>
+      <button className="celebrate-button" onClick={onCelebrate}>
+        <PartyPopper size={18} /> Celebrate with us <span aria-hidden="true">✦</span>
+      </button>
     </section>
   );
 }

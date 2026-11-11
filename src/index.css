@@ -256,4 +256,86 @@ button, a { font: inherit; }
   .music-control-wrap .music-button {gap:6px;padding:8px 9px;}
   .music-control-wrap .music-button span {font-size:10px;}
 }
+.heaven-backdrop {position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,#efc9e9,#fff2d9 58%,#e8c8e5);}
+.heaven-backdrop>svg {display:block;width:100%;height:100%;}
+.heaven-mist {position:absolute;bottom:14%;width:46vw;height:110px;border-radius:50%;background:#fff9ff8a;filter:blur(35px);animation:mist-drift 11s ease-in-out infinite alternate;}
+.mist-left {left:-13%;}.mist-right {right:-13%;animation-delay:-5.5s;}
+.gate-palace {display:none!important;}
+.gate-scene {background:linear-gradient(180deg,#efc9e9 0%,#ffe8df 46%,#efddf0 100%);}
+.gate-scene::before {opacity:.06;mask-image:linear-gradient(transparent,black 35%,transparent);}
+.gate-scene::after {background:radial-gradient(ellipse at center 35%,transparent 18%,#51435c0a 85%),linear-gradient(180deg,#fff5f822,transparent 70%,#8d69920c);}
+.gate-sky {z-index:1;color:#fffaf0;text-shadow:0 0 18px #fff6dd,0 0 34px #f4c8f0;}
+.gate-welcome {z-index:3;color:#70486f;text-shadow:0 1px 10px #fff6f5;}
+.gate-kicker {color:#956e90;}
+.gate-welcome p {color:#967496;}
+.gate-flourish {color:#b27a9e;}
+.gate-portal {z-index:2;}
+.portal-arch {background:linear-gradient(90deg,#94719b,#f3d9eb 10%,#9d72a1 18%,#fff0df 50%,#9d72a1 82%,#f3d9eb 90%,#94719b);box-shadow:inset 0 0 0 2px #fff8ed,inset 0 0 0 5px #e4c3de,inset 0 0 0 9px #815d88,0 0 26px #fff4e9aa;}
+.portal-light {background:radial-gradient(ellipse at 50% 35%,#fffef5 0,#fff2dd 26%,#f2dcef 61%,#b696c4 100%);}
+.portal-glow {animation:portal-pulse 2.5s ease-in-out infinite;}
+.gate-door {border-color:#efd4e5;box-shadow:inset 0 0 0 2px #edd2e4,inset 0 0 0 5px #57394f,inset 0 0 0 7px #e3bdd5,inset 0 0 0 9px #60405a,inset 0 0 0 15px #57364b,inset 0 0 42px #24142677,0 12px 27px #64476c44;}
+.gate-invitation-button {background:linear-gradient(120deg,#705077,#a577a1 55%,#c489a5);box-shadow:0 10px 28px #65456d55,inset 0 1px #fff7;}
+@keyframes mist-drift {to{transform:translateX(45px) scale(1.15);opacity:.58}}
+@media(max-width:600px) {
+ .heaven-backdrop {inset:-2% -17%;}
+ .heaven-backdrop>svg {width:134%;max-width:none;margin-left:-17%;}
+ .heaven-mist {bottom:12%;width:60vw;height:82px;filter:blur(25px);}
+ .gate-scene::after {background:linear-gradient(180deg,#fff4f711,transparent 68%,#fff8f733);}
+}
+.heaven-backdrop::before {position:absolute;z-index:1;inset:0;content:"";pointer-events:none;background:radial-gradient(ellipse 52% 15% at 0% 80%,#fff9ffe6 0,#efc9e5a6 58%,transparent 100%),radial-gradient(ellipse 50% 16% at 100% 81%,#fff9ffe6 0,#efc9e5a6 58%,transparent 100%),radial-gradient(ellipse 75% 20% at 50% 101%,#fff7f7d4 0,#e7c6e4a6 62%,transparent 100%);}
+.heaven-backdrop::after {position:absolute;z-index:1;top:42%;left:50%;width:min(70vw,620px);height:min(70vw,620px);transform:translate(-50%,-50%);border:1px solid #fff8f255;border-radius:50%;box-shadow:0 0 0 22px #fff8f21a,0 0 0 54px #fff8f216,0 0 70px 35px #fff7e266;content:"";pointer-events:none;}
+.heaven-backdrop .heaven-stairs {stroke:#eed3e7;stroke-width:5;opacity:.84;filter:drop-shadow(0 0 5px #fff7e8);}
+.heaven-mist {background:#fff9ffc7;}
 @media(min-width:601px) {.mobile-action-bar {display:none;}}
+.page-shell.page-entered {background:linear-gradient(180deg,#ffd0da 0%,#ffddd4 23%,#ffe9d7 57%,#f9e5df 100%);}
+.invitation-experience {isolation:isolate;}
+.sky-backdrop {position:fixed;z-index:-1;inset:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 33%,#fff2dc55 0,transparent 34%),linear-gradient(180deg,#ffd0db 0%,#ffe3d2 57%,#f5dce8 100%);}
+.sky-backdrop::before {position:absolute;inset:0;content:"";background:radial-gradient(ellipse at 50% 20%,transparent 20%,#9e6b9b10 100%);}
+.sky-lights {position:absolute;top:0;left:0;width:100%;height:82px;overflow:visible;fill:none;stroke:#c78363;stroke-width:1.3;filter:drop-shadow(0 2px 4px #9e5e5c30);}
+.sky-lights > path {stroke:#c18b70;stroke-width:2;opacity:.72;}
+.sky-lights .light-string {stroke:#bd896c;stroke-width:1.4;}
+.light-glow {fill:#ffdc7b;stroke:#d49c42;stroke-width:2.4;filter:drop-shadow(0 0 5px #ffdf88);}
+.light-bulb {fill:#fff4bf;stroke:none;}
+.sky-mountains {position:absolute;right:0;bottom:0;left:0;width:100%;height:250px;}
+.sky-sun {fill:#f5b73d;opacity:.93;filter:drop-shadow(0 0 25px #ffc35890);}
+.mountain-back {fill:#eeb6c9;opacity:.78;}.mountain-front {fill:#e49bb8;opacity:.82;}.mountain-near {fill:#c77fa5;opacity:.77;}
+.sky-horizon {position:absolute;right:0;bottom:0;left:0;height:100px;background:linear-gradient(0deg,#ab78a233,transparent);}
+.fireworks-canvas {position:fixed;z-index:30;inset:0;width:100vw;height:100vh;pointer-events:none;}
+.celebrate-button {position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;width:min(100%,330px);margin:19px auto 0;overflow:hidden;border:1px solid #fff2d6;border-radius:999px;background:linear-gradient(115deg,#68446f,#9e6598 52%,#be7b9f);color:#fffaf2;font-family:Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.09em;box-shadow:0 10px 24px #7046752b,inset 0 1px #ffffff66;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;-webkit-tap-highlight-color:transparent;}
+.celebrate-button::before {position:absolute;z-index:-1;top:-60%;left:-45%;width:34%;height:220%;transform:rotate(25deg);background:linear-gradient(90deg,transparent,#ffffff66,transparent);content:"";transition:left .55s ease;}
+.celebrate-button:hover {transform:translateY(-2px);filter:saturate(1.08);box-shadow:0 14px 30px #7046753b,inset 0 1px #ffffff77;}
+.celebrate-button:hover::before {left:125%;}.celebrate-button:active {transform:scale(.98);}
+.action-firework {display:grid;place-items:center;width:20px;height:20px;border:1px solid #dab2d8;border-radius:50%;color:#bd83bd;font-size:13px;}
+.mobile-action-bar {grid-template-columns:repeat(4,minmax(0,1fr));}
+@media(max-width:600px) {
+  .sky-lights {height:58px;}
+  .sky-mountains {height:195px;}
+  .sky-horizon {height:85px;}
+  .celebrate-button {min-height:48px;margin-top:15px;font-size:11px;}
+  .mobile-action-bar a,.mobile-action-bar button {min-height:49px;font-size:8px;}
+  .mobile-action-bar svg {width:17px;height:17px;}
+}
+@media(max-width:370px) {.mobile-action-bar {left:8px;right:8px;padding:5px;}.mobile-action-bar a,.mobile-action-bar button {font-size:7px;}}
+@media(max-width:600px) {
+  /* Keep the player in normal flow so it never floats over invitation text. */
+  .invitation-experience {padding:12px 12px calc(110px + env(safe-area-inset-bottom));}
+  .music-control-wrap,.invitation-experience .music-control-wrap {position:relative;top:auto;right:auto;left:auto;z-index:2;display:flex;width:min(100%,480px);margin:0 auto 10px;align-items:flex-end;gap:3px;}
+  .music-control-wrap .music-button,.invitation-experience .music-control-wrap .music-button {position:static;display:inline-flex;min-height:42px;align-items:center;justify-content:center;gap:8px;padding:8px 12px;}
+  .music-control-wrap .music-button svg {display:block;flex:0 0 auto;}
+  .music-attribution {max-width:min(100%,300px);padding-right:3px;font-size:8px;line-height:1.25;text-align:right;}
+  .mobile-action-bar {bottom:max(9px,env(safe-area-inset-bottom));gap:2px;padding:5px;border-radius:17px;}
+  .mobile-action-bar a,.mobile-action-bar button {min-height:52px;gap:4px;font-size:9px;line-height:1.1;white-space:nowrap;}
+  .mobile-action-bar svg {display:block;width:19px;height:19px;flex:0 0 19px;}
+  .mobile-action-bar a:focus-visible,.mobile-action-bar button:focus-visible {outline:2px solid #a46b9e;outline-offset:1px;}
+  .action-firework {display:none;}
+  .page-shell.page-entered {overflow-x:clip;}
+}
+@media(max-width:370px) {
+  .invitation-experience {padding-right:9px;padding-left:9px;}
+  .music-control-wrap,.invitation-experience .music-control-wrap {width:100%;}
+  .music-control-wrap .music-button,.invitation-experience .music-control-wrap .music-button {min-height:40px;padding:7px 10px;font-size:11px;}
+  .music-attribution {max-width:205px;font-size:7px;}
+  .mobile-action-bar {left:8px;right:8px;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:4px;}
+  .mobile-action-bar a,.mobile-action-bar button {min-height:48px;font-size:8px;letter-spacing:0;}
+  .mobile-action-bar svg {width:18px;height:18px;flex-basis:18px;}
+}

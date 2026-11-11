@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { Music2, Pause, Volume2, MapPin, Phone, Share2 } from "lucide-react";
+import { Music2, Pause, Volume2, MapPin, Phone, Share2, PartyPopper } from "lucide-react";
 import InviteCard from "./components/InviteCard";
 import Details from "./components/Details";
+import { Fireworks, HeavenBackdrop, SkyBackdrop } from "./components/Celebration";
 import { event } from "./data/event";
 
 const reverieTrack = "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/03/sb_reverie.mp3";
@@ -9,6 +10,7 @@ const reverieTrack = "https://www.scottbuckley.com.au/library/wp-content/uploads
 function PalaceGate({ opening, onOpen }) {
   return (
     <section className={`gate-scene ${opening ? "gate-scene-opening" : ""}`} aria-label="Palace entrance">
+      <HeavenBackdrop />
       <div className="gate-sky" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
       <svg className="gate-palace" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
@@ -78,16 +80,16 @@ function PalaceGate({ opening, onOpen }) {
 function MusicButton({ playing, onToggle }) {
   return <div className="music-control-wrap">
     <button className="music-button" onClick={onToggle} aria-pressed={playing} aria-label={playing ? "Pause wedding music" : "Play wedding music"}>
-      {playing ? <Pause size={15} /> : <Music2 size={15} />}
+        {playing ? <Pause size={18} strokeWidth={1.8} /> : <Music2 size={18} strokeWidth={1.8} />}
       <span>{playing ? "Pause the melody" : "Play a soft melody"}</span>
       {playing && <span className="sound-waves" aria-hidden="true"><i/><i/><i/></span>}
-      {!playing && <Volume2 size={14} className="music-volume" />}
+      {!playing && <Volume2 size={16} strokeWidth={1.8} className="music-volume" />}
     </button>
     <a className="music-attribution" href="https://www.scottbuckley.com.au/library/reverie/" target="_blank" rel="noreferrer">“Reverie” by Scott Buckley · released under CC-BY 4.0 · scottbuckley.com.au</a>
   </div>;
 }
 
-function MobileActionBar() {
+function MobileActionBar({ onCelebrate }) {
   const [shareState, setShareState] = useState("Share");
   const shareInvite = async () => {
     const invite = { title: "Vaibhav & Shrinkhala · Wedding Invitation", text: "Join us for Vaibhav and Shrinkhala’s wedding celebration.", url: window.location.href };
@@ -95,14 +97,14 @@ function MobileActionBar() {
       if (navigator.share) await navigator.share(invite);
       else {
         await navigator.clipboard.writeText(invite.url);
-        setShareState("Link copied");
+        setShareState("Copied");
         window.setTimeout(() => setShareState("Share"), 2200);
       }
     } catch (error) {
       if (error?.name !== "AbortError") {
         try {
           await navigator.clipboard.writeText(invite.url);
-          setShareState("Link copied");
+          setShareState("Copied");
           window.setTimeout(() => setShareState("Share"), 2200);
         } catch { /* The share sheet is optional; keep the invitation usable if unavailable. */ }
       }
@@ -113,6 +115,7 @@ function MobileActionBar() {
     <a href={event.venue.mapsUrl} target="_blank" rel="noreferrer"><MapPin size={18}/><span>Directions</span></a>
     <a href={`tel:${event.contact}`}><Phone size={18}/><span>Call family</span></a>
     <button onClick={shareInvite}><Share2 size={18}/><span>{shareState}</span></button>
+    <button onClick={onCelebrate}><PartyPopper size={18} strokeWidth={1.8}/><span>Celebrate</span></button>
   </nav>;
 }
 
@@ -120,7 +123,10 @@ export default function App() {
   const [entered, setEntered] = useState(false);
   const [opening, setOpening] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [fireworksKey, setFireworksKey] = useState(0);
   const audioRef = useRef(null);
+
+  const celebrate = () => setFireworksKey((key) => key + 1);
 
   const playMusic = () => {
     if (!audioRef.current) {
@@ -152,9 +158,11 @@ export default function App() {
       <div className="ambient ambient-one" aria-hidden="true" /><div className="ambient ambient-two" aria-hidden="true" />
       {!entered && <PalaceGate opening={opening} onOpen={enterPalace} />}
       {entered && <div className="invitation-experience">
+        <SkyBackdrop />
         <MusicButton playing={playing} onToggle={toggleMusic} />
-        <div className="invitation-wrap"><InviteCard /><Details /></div>
-        <MobileActionBar />
+        <div className="invitation-wrap"><InviteCard /><Details onCelebrate={celebrate} /></div>
+        <MobileActionBar onCelebrate={celebrate} />
+        {fireworksKey > 0 && <Fireworks key={fireworksKey} burstId={fireworksKey} />}
       </div>}
     </main>
   );
