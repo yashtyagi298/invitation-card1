@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { Music2, Pause, Volume2 } from "lucide-react";
+import { Music2, Pause, Volume2, MapPin, Phone, Share2 } from "lucide-react";
 import InviteCard from "./components/InviteCard";
 import Details from "./components/Details";
+import { event } from "./data/event";
 
 const reverieTrack = "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/03/sb_reverie.mp3";
 
@@ -86,6 +87,35 @@ function MusicButton({ playing, onToggle }) {
   </div>;
 }
 
+function MobileActionBar() {
+  const [shareState, setShareState] = useState("Share");
+  const shareInvite = async () => {
+    const invite = { title: "Vaibhav & Shrinkhala · Wedding Invitation", text: "Join us for Vaibhav and Shrinkhala’s wedding celebration.", url: window.location.href };
+    try {
+      if (navigator.share) await navigator.share(invite);
+      else {
+        await navigator.clipboard.writeText(invite.url);
+        setShareState("Link copied");
+        window.setTimeout(() => setShareState("Share"), 2200);
+      }
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        try {
+          await navigator.clipboard.writeText(invite.url);
+          setShareState("Link copied");
+          window.setTimeout(() => setShareState("Share"), 2200);
+        } catch { /* The share sheet is optional; keep the invitation usable if unavailable. */ }
+      }
+    }
+  };
+
+  return <nav className="mobile-action-bar" aria-label="Invitation quick actions">
+    <a href={event.venue.mapsUrl} target="_blank" rel="noreferrer"><MapPin size={18}/><span>Directions</span></a>
+    <a href={`tel:${event.contact}`}><Phone size={18}/><span>Call family</span></a>
+    <button onClick={shareInvite}><Share2 size={18}/><span>{shareState}</span></button>
+  </nav>;
+}
+
 export default function App() {
   const [entered, setEntered] = useState(false);
   const [opening, setOpening] = useState(false);
@@ -124,6 +154,7 @@ export default function App() {
       {entered && <div className="invitation-experience">
         <MusicButton playing={playing} onToggle={toggleMusic} />
         <div className="invitation-wrap"><InviteCard /><Details /></div>
+        <MobileActionBar />
       </div>}
     </main>
   );
