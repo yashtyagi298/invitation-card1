@@ -39,7 +39,7 @@ export default function InviteCard() {
         <div className="crest"><span>✦</span><b>ॐ</b><span>✦</span></div>
         <p className="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
         <span className="invitation-ribbon">THE WEDDING OF</span>
-        <h1 className="couple-names"><span>{event.name1}</span><em>&amp;</em><span>{event.name2}</span></h1>
+        <h1 className="couple-names"><span>{event.name2}</span><em>&amp;</em><span>{event.name1}</span></h1>
         <div className="gold-divider"><i />❧<i /></div>
         <p className="invite-message">cordially invite you to join them<br />for their joyful celebration</p>
 
