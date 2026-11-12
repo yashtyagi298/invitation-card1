@@ -85,7 +85,7 @@ function MusicButton({ playing, onToggle }) {
       {playing && <span className="sound-waves" aria-hidden="true"><i/><i/><i/></span>}
       {!playing && <Volume2 size={16} strokeWidth={1.8} className="music-volume" />}
     </button>
-    <a className="music-attribution" href="https://www.scottbuckley.com.au/library/reverie/" target="_blank" rel="noreferrer">“Reverie” by Scott Buckley · released under CC-BY 4.0 · scottbuckley.com.au</a>
+    {/* <a className="music-attribution" href="https://www.scottbuckley.com.au/library/reverie/" target="_blank" rel="noreferrer">“Reverie” by Scott Buckley · released under CC-BY 4.0 · scottbuckley.com.au</a> */}
   </div>;
 }
 
